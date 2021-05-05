@@ -1,0 +1,48 @@
+{% extends 'first_model/index.html' %}
+
+{% block content %}
+
+
+<div class="container justify-content-center">
+    <div class="row mt-5 shadow justify-content-center">
+        <form class="col-5 mt-4" method = "GET" action="{% url 'search_student_name' %}">
+            <div class="mb-3">
+              <label  class="form-label">Student Registration Number</label>
+              <input type="text" class="form-control" name="registration_number">
+              
+            </div>
+            <button type="submit" class="btn btn-block btn-primary mb-4 col-12">Submit</button>
+        </form>
+
+        {% if student %}
+        <table class="table col-12">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">City</th>
+                <th scope="col">Date Admmited</th>
+                <th scope="col">Registration Number</th>
+                <th scope="col">Active</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{student.name}}</td>
+                    <td>{{student.level}}</td>
+                    <td>{{student.city}}</td>
+                    <td>{{student.date_admitted}}</td>
+                    <td>{{student.reg_no}}</td>
+                    <td>{{student.active}}</td>
+                </tr>
+            </tbody>
+          </table>
+        {% elif result_not_found %}
+        <label  class="form-label col-12  text-center text-danger text-uppercase">{{result_not_found}}</label>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}
